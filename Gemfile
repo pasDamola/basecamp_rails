@@ -12,6 +12,8 @@ gem 'carrierwave'
 
 gem 'devise'
 
+gem "cancan"
+
 gem 'gravtastic'
 # Use Puma as the app server
 gem 'puma', '~> 4.1'
