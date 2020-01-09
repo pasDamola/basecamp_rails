@@ -1,10 +1,14 @@
 class IdeasController < ApplicationController
+  include Devise::Controllers::Helpers 
+  helper_method :current_user
+
+
   before_action :set_idea, only: [:show, :edit, :update, :destroy]
 
   # GET /ideas
   # GET /ideas.json
   def index
-    @ideas = Idea.all
+    @ideas = current_user.ideas.all
   end
 
   # GET /ideas/1
@@ -16,7 +20,7 @@ class IdeasController < ApplicationController
 
   # GET /ideas/new
   def new
-    @idea = Idea.new
+    @idea = current_user.ideas.build
   end
 
   # GET /ideas/1/edit
@@ -26,7 +30,7 @@ class IdeasController < ApplicationController
   # POST /ideas
   # POST /ideas.json
   def create
-    @idea = Idea.new(idea_params)
+    @idea = current_user.ideas.new(idea_params)
 
     respond_to do |format|
       if @idea.save

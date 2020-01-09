@@ -14,6 +14,8 @@ gem 'devise'
 
 gem "cancan"
 
+gem 'cancancan'
+
 gem 'gravtastic'
 # Use Puma as the app server
 gem 'puma', '~> 4.1'
