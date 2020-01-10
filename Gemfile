@@ -12,6 +12,8 @@ gem 'carrierwave'
 
 gem 'devise'
 
+gem 'activeadmin'
+
 gem "cancan"
 
 gem 'cancancan'
