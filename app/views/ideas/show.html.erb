@@ -2,7 +2,17 @@
   <div class="col-md-9">
     <p><b>Name: </b><%= @idea.name %></p>
     <p><b>Description: </b><%= @idea.description %></p>
-    <p>
+
+    <% if @idea.images.attached? %>
+        <p><b>Attachments: </b><% @idea.images.each do |image| %>
+          <p>Filename: <%= image.filename %></p>
+          <%= image_tag image %> <br />
+          <%= link_to 'Download file', rails_blob_path(image, disposition: 'attachment') %>
+        <% end %>
+        </p>
+    <% end %>
+
+
       <%= link_to 'Edit', edit_idea_path(@idea) %> |
       <%= link_to 'Destroy', @idea, data: { confirm: 'Are you sure?' }, method: :delete %> |
       <%= link_to 'Back', ideas_path %>

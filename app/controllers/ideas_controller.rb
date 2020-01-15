@@ -31,7 +31,7 @@ class IdeasController < ApplicationController
   # POST /ideas.json
   def create
     @idea = current_user.ideas.new(idea_params)
-
+    
     respond_to do |format|
       if @idea.save
         format.html { redirect_to @idea, notice: 'Idea was successfully created.' }
@@ -75,6 +75,6 @@ class IdeasController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def idea_params
-      params.require(:idea).permit(:name, :description, :picture)
+      params.require(:idea).permit(:name, :description, images: [])
     end
 end
