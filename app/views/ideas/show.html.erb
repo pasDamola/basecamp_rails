@@ -6,7 +6,7 @@
     <% if @idea.images.attached? %>
         <p><b>Attachments: </b><% @idea.images.each do |image| %>
           <p>Filename: <%= image.filename %></p>
-          <%= image_tag image %> <br />
+          <p><%= image_tag image if image.image? %></p>
           <%= link_to 'Download file', rails_blob_path(image, disposition: 'attachment') %>
         <% end %>
         </p>
@@ -16,6 +16,22 @@
       <%= link_to 'Edit', edit_idea_path(@idea) %> |
       <%= link_to 'Destroy', @idea, data: { confirm: 'Are you sure?' }, method: :delete %> |
       <%= link_to 'Back', ideas_path %>
+
+
+      <br>
+      <br>
+      <br>
+
+      <h3>Project Comments</h3>
+      <% @comments.each do |comment| %>
+        <div>
+          <strong><%= comment.user_name %></strong>
+          <br>
+          <p><%= comment.body %></p>
+          <p><%= link_to 'Delete', comment_path(comment), method: :delete, data: { confirm: 'Are you sure?' } %></p>
+        </div>
+      <% end %>
+<%= render partial: 'comments/form', locals: { comment: @comment } %>
     </p>
   </div>
 </div>
