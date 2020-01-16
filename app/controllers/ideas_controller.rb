@@ -5,6 +5,14 @@ class IdeasController < ApplicationController
 
   before_action :set_idea, only: [:show, :edit, :update, :destroy]
 
+  def addfriend
+    @idea = Idea.find(params[:id])
+    @idea.users << User.find(params[:user])
+    respond_to do |format|
+      format.html { redirect_to @idea, :notice => 'Added.' }
+    end
+  end
+
   # GET /ideas
   # GET /ideas.json
   def index

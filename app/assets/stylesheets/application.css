@@ -14,6 +14,8 @@
  *= require_self
  */
 
+require rails_bootstrap_forms
+
  
 footer { margin-top: 100px; }
 table, td, th { vertical-align: middle; border: none; }

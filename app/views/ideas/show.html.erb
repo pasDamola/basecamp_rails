@@ -22,6 +22,20 @@
       <br>
       <br>
 
+
+      <h3>Add Users to Project</h3>
+      <% @users = User.all %>
+      <select id="user_select" name="user_select" class="input-large">
+        <% @users.each do |user| %>
+          <option><%= user.email %></options>
+        <% end %>
+      </select>
+      
+
+      <br>
+      <br>
+      <br>
+
       <h3>Project Comments</h3>
       <% @comments.each do |comment| %>
         <div>
