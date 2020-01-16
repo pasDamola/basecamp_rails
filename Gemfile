@@ -19,6 +19,8 @@ gem "cancan"
 gem 'cancancan'
 
 gem 'gravtastic'
+
+gem "bootstrap_form", "~> 4.0"
 # Use Puma as the app server
 gem 'puma', '~> 4.1'
 # Use SCSS for stylesheets
