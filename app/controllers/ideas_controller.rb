@@ -6,8 +6,8 @@ class IdeasController < ApplicationController
   before_action :set_idea, only: [:show, :edit, :update, :destroy]
 
   def addfriend
-    @idea = Idea.find(params[:id])
-    @idea.users << User.find(params[:user])
+    # @idea = Idea.find(params[:id])
+    @idea << current_user
     respond_to do |format|
       format.html { redirect_to @idea, :notice => 'Added.' }
     end
