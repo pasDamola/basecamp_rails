@@ -30,6 +30,7 @@
           <option><%= user.email %></options>
         <% end %>
       </select><br>
+      <%= link_to 'Add friend', addfriend_idea_path(@idea, user_id: current_user.id) %>
       <br>
       <br>
       <br>
@@ -48,29 +49,13 @@
   </div>
 
   <div class="col-md-4">
-  <h3>Users on the <b><%= @idea.name %></b> project </h3>
-  <table class="table">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Email</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>@mdo</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>@twitter</td>
-    </tr>
-  </tbody>
-</table>
-  </div>
+  <% @project_users = @idea.users %>
+  <select id="user_select" name="user_select" class="input-large">
+  <% @project_users.each do |user| %>
+    <option><%= user.email %></options>
+  <% end %>
+</select><br>
+</div>
+
 
 </div>

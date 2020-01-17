@@ -3,7 +3,11 @@ Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   devise_for :users
-  resources :ideas 
+  resources :ideas do
+    member do
+      get :addfriend
+    end
+  end
   resources :comments
   resources :user_projects
   get 'pages/info'
