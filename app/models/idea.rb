@@ -3,7 +3,7 @@ class Idea < ApplicationRecord
     validates_presence_of   :description, :message => 'Please Enter Description of  Project.'
     has_many :comments
     has_many_attached :images
-    has_many :users
+    has_and_belongs_to_many :users
 end
 
 

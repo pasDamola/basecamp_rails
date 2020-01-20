@@ -22,6 +22,7 @@ class IdeasController < ApplicationController
   # GET /ideas/1
   # GET /ideas/1.json
   def show
+    @user_options = User.all.map{ |u| [ u.email, u.id ] }
     @comments = @idea.comments.all
     @comment = @idea.comments.build
   end
@@ -39,6 +40,10 @@ class IdeasController < ApplicationController
   # POST /ideas.json
   def create
     @idea = current_user.ideas.new(idea_params)
+    if @idea.users.empty?
+      @idea.users << current_user
+    end
+
     
     respond_to do |format|
       if @idea.save

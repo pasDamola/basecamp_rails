@@ -23,14 +23,21 @@
       <br>
 
 
+
       <h3>Add Users to Project</h3>
       <% @users = User.all %>
-      <select id="user_select" name="user_select" class="input-large">
-        <% @users.each do |user| %>
-          <option><%= user.email %></options>
-        <% end %>
-      </select><br>
-      <%= link_to 'Add friend', addfriend_idea_path(@idea, user_id: current_user.id) %>
+      
+      <%= form_with url:"/addfriend/#{@idea.id}", local: true do |form| %>
+        <%= form.select(:user_id, options_for_select(@user_options))%>
+        <br>
+        <br>
+        <%= form.submit 'Add User' %>
+      <% end %>
+ 
+
+      
+
+
       <br>
       <br>
       <br>
