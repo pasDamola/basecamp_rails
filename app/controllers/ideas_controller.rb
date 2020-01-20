@@ -7,11 +7,22 @@ class IdeasController < ApplicationController
 
   def addfriend
     @idea = Idea.find(params[:id])
-    @idea.users << User.find(params[:user_id])
-    respond_to do |format|
-      format.html { redirect_to @idea, :notice => 'Added.' }
+    if @idea.users.include? User.find(params[:user_id])
+      #Users must not be added twice
+      respond_to do |format|
+        format.html { redirect_to @idea, :error => 'Users already exists in project'}
+      end
+    else
+      @idea.users << User.find(params[:user_id])
+      respond_to do |format|
+        format.html { redirect_to @idea, :notice => 'User has been Added.' }
+      end
     end
   end
+
+
+
+
 
   # GET /ideas
   # GET /ideas.json
