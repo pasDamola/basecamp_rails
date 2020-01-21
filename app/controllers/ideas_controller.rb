@@ -10,7 +10,7 @@ class IdeasController < ApplicationController
     if @idea.users.include? User.find(params[:user_id])
       #Users must not be added twice
       respond_to do |format|
-        format.html { redirect_to @idea, :error => 'Users already exists in project'}
+        format.html { redirect_to @idea, :notice => 'Users already exists in project'}
       end
     else
       @idea.users << User.find(params[:user_id])
@@ -36,6 +36,7 @@ class IdeasController < ApplicationController
     @user_options = User.all.map{ |u| [ u.email, u.id ] }
     @comments = @idea.comments.all
     @comment = @idea.comments.build
+    
   end
 
   # GET /ideas/new

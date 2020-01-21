@@ -45,7 +45,7 @@
       <h3>Project Comments</h3>
       <% @comments.each do |comment| %>
         <div>
-          <strong><%= current_user.email %></strong>
+          <strong><%= comment.user.email %></strong>
           <br>
           <p><%= comment.body %></p>
           <p><%= link_to 'Delete', comment_path(comment), method: :delete, data: { confirm: 'Are you sure?' } %></p>
@@ -57,11 +57,24 @@
 
   <div class="col-md-4">
   <% @project_users = @idea.users %>
-  <select id="user_select" name="user_select" class="input-large">
+  <h3><b>Users associated with the project</b></h3>
+<table class="table">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Email</th>
+    </tr>
+  </thead>
+  <tbody>
   <% @project_users.each do |user| %>
-    <option><%= user.email %></options>
-  <% end %>
-</select><br>
+    <tr>
+      <th scope="row"><%= user.id %></th>
+      <td><%= user.email %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
 </div>
 
 
