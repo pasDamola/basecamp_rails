@@ -24,7 +24,8 @@ class CommentsController < ApplicationController
   # POST /comments
   # POST /comments.json
   def create
-    @comment =  @idea.comments.create(comment_params.merge(user_id: current_user.id))
+    idea = Idea.find(params[:idea_id])
+    @comment =  idea.comments.create(comment_params.merge(user_id: current_user.id))
 
     respond_to do |format|
       if @comment.save
@@ -55,9 +56,11 @@ class CommentsController < ApplicationController
   # DELETE /comments/1
   # DELETE /comments/1.json
   def destroy
+    @idea = Idea.find(params[:idea_id])
+    @comment = @idea.comments.find(params[:id])
     @comment.destroy
     respond_to do |format|
-      format.html { redirect_to comments_url, notice: 'Comment was successfully destroyed.' }
+      format.html { redirect_to idea_path(@idea), notice: 'Comment was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

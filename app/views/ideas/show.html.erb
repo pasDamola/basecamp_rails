@@ -28,7 +28,7 @@
       <% @users = User.all %>
       
       <%= form_with url:"/addfriend/#{@idea.id}", local: true do |form| %>
-        <%= form.select(:user_id, options_for_select(@user_options))%>
+        <%= form.select(:user_id, options_for_select(@user_options), prompt: 'Please Select User')%>
         <br>
         <br>
         <%= form.submit 'Add User' %>
@@ -45,10 +45,9 @@
       <h3>Project Comments</h3>
       <% @comments.each do |comment| %>
         <div>
-          <strong><%= comment.user.email %></strong>
-          <br>
-          <p><%= comment.body %></p>
-          <p><%= link_to 'Delete', comment_path(comment), method: :delete, data: { confirm: 'Are you sure?' } %></p>
+          <p><b>Commenter: </b><%= comment.user.email %></p>
+          <p><b>Comment: </b><%= comment.body %></p>
+          <p><%= link_to 'Delete', [@idea, comment], method: :delete, data: { confirm: 'Are you sure?' } %></p>
         </div>
       <% end %>
 <%= render partial: 'comments/form', locals: { comment: @comment } %>

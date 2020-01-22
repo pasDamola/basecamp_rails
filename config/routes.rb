@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   devise_for :users
   resources :ideas do
+    resources :comments
     member do
       get :addfriend
     end

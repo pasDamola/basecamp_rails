@@ -52,10 +52,7 @@ class IdeasController < ApplicationController
   # POST /ideas.json
   def create
     @idea = current_user.ideas.new(idea_params)
-    if @idea.users.empty?
-      @idea.users << current_user
-    end
-
+    @idea.users << current_user
     
     respond_to do |format|
       if @idea.save
