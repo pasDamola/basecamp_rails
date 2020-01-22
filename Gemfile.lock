@@ -281,6 +281,7 @@ DEPENDENCIES
   devise
   gravtastic
   jbuilder (~> 2.7)
+  mini_magick
   puma (~> 4.1)
   rails (~> 6.0.2, >= 6.0.2.1)
   sass-rails (>= 6)

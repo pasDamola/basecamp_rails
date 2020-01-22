@@ -8,6 +8,8 @@
           <p>Filename: <%= image.filename %></p>
           <p><%= image_tag image if image.image? %></p>
           <%= link_to 'Download file', rails_blob_path(image, disposition: 'attachment') %>
+
+
         <% end %>
         </p>
     <% end %>
@@ -48,6 +50,8 @@
           <p><b>Commenter: </b><%= comment.user.email %></p>
           <p><b>Comment: </b><%= comment.body %></p>
           <p><%= link_to 'Delete', [@idea, comment], method: :delete, data: { confirm: 'Are you sure?' } %></p>
+          <%= link_to 'Edit', edit_idea_comment_path(@idea, comment) %>
+
         </div>
       <% end %>
 <%= render partial: 'comments/form', locals: { comment: @comment } %>
@@ -56,7 +60,7 @@
 
   <div class="col-md-4">
   <% @project_users = @idea.users %>
-  <h3><b>Users associated with the project</b></h3>
+  <h3><b>Project Users</b></h3>
 <table class="table">
   <thead class="thead-light">
     <tr>

@@ -19,13 +19,15 @@ class CommentsController < ApplicationController
 
   # GET /comments/1/edit
   def edit
+    @idea = Idea.find(params[:idea_id])
+    @comment = @idea.comments.find(params[:id])
   end
 
   # POST /comments
   # POST /comments.json
   def create
-    idea = Idea.find(params[:idea_id])
-    @comment =  idea.comments.create(comment_params.merge(user_id: current_user.id))
+    @idea = Idea.find(params[:idea_id])
+    @comment =  @idea.comments.create(comment_params.merge(user_id: current_user.id))
 
     respond_to do |format|
       if @comment.save
@@ -42,9 +44,12 @@ class CommentsController < ApplicationController
   # PATCH/PUT /comments/1
   # PATCH/PUT /comments/1.json
   def update
+    @idea = Idea.find(params[:idea_id])
+    @comment = @idea.comments.find(params[:id])
+
     respond_to do |format|
       if @comment.update(comment_params)
-        format.html { redirect_to @comment, notice: 'Comment was successfully updated.' }
+        format.html { redirect_to idea_path(@idea), notice: 'Comment was successfully updated.' }
         format.json { render :show, status: :ok, location: @comment }
       else
         format.html { render :edit }
