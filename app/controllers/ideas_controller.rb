@@ -36,6 +36,8 @@ class IdeasController < ApplicationController
     @user_options = User.all.map{ |u| [ u.email, u.id ] }
     @comments = @idea.comments.all
     @comment = @idea.comments.build
+    @tasks = @idea.tasks.all
+    @task = @idea.tasks.build
     
   end
 

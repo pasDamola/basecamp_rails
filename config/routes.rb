@@ -4,13 +4,17 @@ Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   devise_for :users
+  
   resources :ideas do
     resources :comments
+    resources :tasks
     member do
       get :addfriend
     end
   end
+
   resources :comments
+  resources :tasks
   resources :user_projects
   get 'pages/info'
   root to: redirect('/ideas')

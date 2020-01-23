@@ -81,9 +81,18 @@
 <br>
 <br>
 
-<h3><b>Project Tasks</b></h3>
+<h3>Project Tasks</h3>
+<% @tasks.each do |task| %>
+  <div>
+    <p><b>Name: </b><%= task.name %></p>
+    <p><%= link_to 'Delete', [@idea, task], method: :delete, data: { confirm: 'Are you sure?' } %></p>
+    <%= link_to 'Edit', edit_idea_task_path(@idea, task) %>
 
-</div>
+  </div>
+<% end %>
+
+<h3><b>Create Tasks</b></h3>
+<%= render partial: 'tasks/form', locals: { task: @task } %>
 
 
 </div>
