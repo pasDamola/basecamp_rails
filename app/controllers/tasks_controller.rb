@@ -43,6 +43,35 @@ class TasksController < InheritedResources::Base
     end
   end
 
+    # PATCH/PUT /comments/1
+  # PATCH/PUT /comments/1.json
+  def update
+    @idea = Idea.find(params[:idea_id])
+    @task = @idea.tasks.find(params[:id])
+
+    respond_to do |format|
+      if @task.update(task_params)
+        format.html { redirect_to idea_path(@idea), notice: 'Task was successfully updated.' }
+        format.json { render :show, status: :ok, location: @task }
+      else
+        format.html { render :edit }
+        format.json { render json: @task.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # DELETE /comments/1
+  # DELETE /comments/1.json
+  def destroy
+    @idea = Idea.find(params[:idea_id])
+    @task = @idea.tasks.find(params[:id])
+    @task.destroy
+    respond_to do |format|
+      format.html { redirect_to idea_path(@idea), notice: 'Task was successfully destroyed.' }
+      format.json { head :no_content }
+    end
+  end
+
   private
 
     def set_task

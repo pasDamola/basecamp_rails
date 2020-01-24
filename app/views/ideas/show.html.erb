@@ -48,11 +48,12 @@
       <% @comments.each do |comment| %>
         <div>
           <p><b>Commenter: </b><%= comment.user.email %></p>
-          <p><b>Comment: </b><%= comment.body %></p>
-          <p><%= link_to 'Delete', [@idea, comment], method: :delete, data: { confirm: 'Are you sure?' } %></p>
+          <b>Comment: </b><%= comment.body %><br>
+          <%= link_to 'Delete', [@idea, comment], method: :delete, data: { confirm: 'Are you sure?' } %> |
           <%= link_to 'Edit', edit_idea_comment_path(@idea, comment) %>
 
         </div>
+        </br>
       <% end %>
 <%= render partial: 'comments/form', locals: { comment: @comment } %>
     </p>
@@ -84,13 +85,13 @@
 <h3>Project Tasks</h3>
 <% @tasks.each do |task| %>
   <div>
-    <p><b>Name: </b><%= task.name %></p>
-    <p><%= link_to 'Delete', [@idea, task], method: :delete, data: { confirm: 'Are you sure?' } %></p>
+    <b>Name: </b><%= task.name %><br>
+    <%= link_to 'Delete', [@idea, task], method: :delete, data: { confirm: 'Are you sure?' } %> |
     <%= link_to 'Edit', edit_idea_task_path(@idea, task) %>
-
   </div>
+  <br>
 <% end %>
-
+<br>
 <h3><b>Create Tasks</b></h3>
 <%= render partial: 'tasks/form', locals: { task: @task } %>
 
