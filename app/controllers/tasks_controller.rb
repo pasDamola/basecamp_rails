@@ -34,7 +34,7 @@ class TasksController < InheritedResources::Base
     respond_to do |format|
       if @task.save
         puts params
-        format.html { redirect_to idea_path(params["task"]["idea_id"]), notice: 'Task was successfully created.' }
+        format.html { redirect_to  idea_path(@idea), notice: 'Task was successfully created.' }
         format.json { render :show, status: :created, location: @task }
       else
         format.html { render :new }
