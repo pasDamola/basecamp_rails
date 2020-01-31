@@ -1,4 +1,5 @@
 class IdeasController < ApplicationController
+  before_action :authenticate_user!
   include Devise::Controllers::Helpers 
   helper_method :current_user
 
