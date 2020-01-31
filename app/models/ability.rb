@@ -31,7 +31,7 @@ class Ability
     # For example, here the user can only update published articles.
     #
     #   can :update, Article, :published => true
-    #
+    end
     # See the wiki for details:
     # https://github.com/ryanb/cancan/wiki/Defining-Abilities
   end
